@@ -1,48 +1,126 @@
-Thread
 
-Methods of Threads
+													------------------------------
+														Multi Threading in Java
+													------------------------------
+
+
 https://www.javatpoint.com/multithreading-in-java
 
-Life cycle pf thread:
-new 
-active
-Blocked / Waiting
-Terminated
+	* Multi Threading	
+		-> Multithreading involves creating multiple threads within a single process.
+		-> Each thread runs concurrently, sharing the same memory space.
+		-> Java Multithreading is mostly used in games, animation, etc.
 
+	* Multi Processing
+		-> Multiprocessing involves using multiple CPUs or processors to execute multiple processes simultaneously.
+		-> Processes have separate memory spaces, which makes communication between processes more complex and slower.
 
+	* Advantages of Multi Threading
+		-> Does not blocks the user as threads are independent and can perform multiple operations.
+		-> Saves time
+		-> Threads are independent so exception in one thread wont halt the other thread.
+	
+	* Thread in Java
+		-> A thread is a lightweight subprocess, the smallest unit of processing.
+		-> Threads in same process shares the same CPU.
+		NOTE: At a time one thread is executed only.
+		
+		Suppose we have a dual core CPU and two process to run which has three threads then at a time only two threads can execute on dual core. 
+		
+	* Context Switching
+		->  The operating system’s scheduler allocates CPU time to each thread, switching between them to ensure they all get a chance to execute.
+	
+---------------------	
+Thread Creation
+---------------------
+
+https://www.geeksforgeeks.org/multithreading-in-java/
+
+Threads can be created by two ways:
+
+		1. Extending the Thread class 
+			-> Create a class that extends Thread Class. This class overrides the run() method available in thread class.
+			-> To start the execution(run method) of thread create the class object and invoke .start() method on it.
+			-> Example coded.
+			
+		2. Implementing the Runnable Interface
+			-> Create a class (MyRunnable) that implements the Runnable Functional Interface and provides the implementation of run method.
+			-> The instance of this class(MyRunnable) is passed in Thread to create it as thread.
+					Thread th = new Thread(new MyRunnable());
+					
+			-> Advantage of this is that we can now extend any other class as well from (MyRunnable) class. Earlier approach has that restriction.
+		
+		IMP
+			-> When program calls Thread.start() a new thread gets created and then the run method is executed.
+			-> In case if directly run method is called then no new thread gets created and program runs as a normal method call.
+			
+			-> We can not call start method twice else it gived an exception
+--------------------
+Life cycle of thread
+--------------------
+
+		1. New State				-> Thread yet to start
+		2. Runnable State			-> Thread for CPU to give plaform to run. 
+		3. Blocked / Waiting State	-> Blocked Thread is trying to lock a resource which is already been locked by other thread.
+		4. Timed Waiting State		-> Tread is slept for few seconds based on the time value passed.
+		5. Terminated State			-> Thread can be terminated either after completing the job or some exeception/event had occurred.
+
+------------------
+Methods of Threads
+------------------
+
+	* start()				->	Begins the execution of the thread. The JVM calls the run() method of this thread. 
+	* sleep(long millis)	-> Causes the currently executing thread to sleep (pause execution) for the specified number of milliseconds.
+	* interrupt()			-> Interrupts a thread that is in the sleeping, waiting, or blocked state.
+	* t1.join() 			-> Waits for the thread t1 to die. This method allows one thread to wait for the completion of another.
+	* isAlive()				-> Tests if the thread is alive (i.e., it has been started and has not yet died).
+	* getName() /			-> Gets or sets the name of the thread.
+		setName(String name)
+	* getPriority() /		-> Gets or sets the priority of the thread.
+		setPriority(int priority)
+	* getState()			-> Returns the state of the thread (e.g., NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED).
+	* yield()				-> Causes the currently executing thread to temporarily pause and allow other threads to execute.
+		
+
+--------------------
+Main Thread
+--------------------
+	
+	* When Java Program starts up, one thread begins running immediately. This is usually called the main thread of our program.
+	* Two important feature of Main thread:
+		1. It is the thread from which other “child” threads will be spawned.
+		2. Often, it must be the last thread to finish execution because it performs various shutdown actions
+	* The default priority of Main thread is 5 and for all remaining user threads priority will be inherited from parent to child.
+
+----------------------------	
 Priority In thread Sheduling 
-If same priority then first come first serve basis
-We cant run thread twice
+----------------------------
+	-> If same priority then first come first serve basis
+	-> We cant run thread twice
+	-> Default priority of a thread is 5 (NORM_PRIORITY). The value of MIN_PRIORITY is 1 and the value of MAX_PRIORITY is 10.
 
 
-join() in Threads basically waits the current thread until the thread on which join() has called is converted to dead state
-
-Default priority of a thread is 5 (NORM_PRIORITY). The value of MIN_PRIORITY is 1 and the value of MAX_PRIORITY is 10.
-
-
+----------------------------
 Demon Thread
-Note: If you want to make a user thread as Daemon, it must not be started otherwise it will throw IllegalThreadStateException.
+----------------------------
+	-> It is a low priority thread that run in the background to perform tasks such as garbage collection or provide services to user threads.
+	
+	Note: If you want to make a user thread as Daemon, it must not be started otherwise it will throw IllegalThreadStateException.
 
+	Garbage Collector
+		-> The Garbage collector of JVM collects only those objects that are created by new keyword. So if you have created any object without new, 
+			you can use finalize method to perform cleanup processing (destroying remaining objects).
 
-Garbage Collector:
-The Garbage collector of JVM collects only those objects that are created by new keyword. So if you have created any object without new, 
-you can use finalize method to perform cleanup processing (destroying remaining objects).
+		-> Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object 
+			is garbage collected.
 
-Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object 
-is garbage collected.
-
-
-
-
-Synchronization:
-Java Synchronized Method
-If you declare any method as synchronized, it is known as synchronized method.
-
-Synchronized method is used to lock an object for any shared resource.
-
-When a thread invokes a synchronized method, it automatically acquires the lock for that object and releases it when the 
-thread completes its task.
-
+-------------------------
+Synchronization
+-------------------------
+	-> It is the concept of ensuring multiple threads to interact with shared resource safely.
+	
+	* Synchronized Block
+		-> When a thread invokes a synchronized method, it automatically acquires the lock for that object and releases it when the thread completes its task.
 
 
 
