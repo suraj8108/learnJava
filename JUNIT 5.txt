@@ -1,0 +1,146 @@
+########################
+JUNIT 5
+########################
+	Testing Introduction
+	Junit Introduction
+	Setting up Junit 5
+	Creating tests in JUNIT
+#########################
+
+Testing Introduction
+	#Testing invlolves mesasuring software/ validting software over different metrics for quality and confirmation to standards that
+	were set at the beginning of SDLC
+	#Testing can be catgorized on basis of process followed as Quality Control and Quality Assurance(Testing Parallely)
+
+		REFER PDF for more Details
+SDLC
+--> Planning Stage
+--> Analysis Stage
+-->Design Stage
+--> Devlopment
+-->Testing
+--> Deployment and Maintenance
+
+JUNIT
+JUNIT is a unit testing framework for JAVA programing Language
+	Version to be used is Junit5
+	Junit 5 = Junit Platform + Jupiter + Junit Vintage
+
+# JUNIT Platform serves a foundation for launching testing frameworks on the JVM
+#JUNIT Platform also defines Test engine API's for developing testing frameworks
+
+#Junit Jupiter is the combination of programming model and extension model for writing test and extensions in 
+Junit file
+
+#Junit Vintage provides test engine for JUNIT 3 and JUNIT 4 based test on platform
+
+
+
+Create Java Project -> New Junit -> Enter name and package -> Add to build path
+Exclipse Comes bundeled woth JUNIT 5 libraries
+For downloading JUNIT 5 
+junit.org/junit5/
+
+
+
+
+
+
+
+Writing Unit Test using JUNIT
+
+Annotations 
+
+JUNIT supports and provides for different annotations for configuring Tests and extending framework
+
+@Test
+#Denotes a method as test method
+
+
+@ParameterizedTest
+Denotes a method as parameterized test
+Allows for run a test with multiple arguments or parameters for a method
+The source for the test parameters to be supplied can be different and are mentioned using different operations
+	@ValueSource
+		-->https://junit.org/junit5/docs/5.7.1/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ValueSource.html
+		-->
+	@NullSource
+		--> Passes the null value in the function
+	@MethodSource
+	@EmptySource
+	@CsvSource
+	@CsvFileSource
+There cant be @Test when we are using @ParameterizedTest
+
+@BeforeEach
+Denotes a method to be executed before each test method
+
+@AfterEach
+Denotes a method to be executed after each test method
+
+
+@BeforeAll
+Denotes a method to execute before all the test methods
+It needs to be static
+
+@AfterAll
+Denotes a method to execute after all the test methods have executed
+It needs to be static
+
+@Disable
+Used to diable a test class or test method
+
+@RepeatedTest
+Used to repeat a test a set no of times 
+
+
+
+
+
+Assumptions
+
+Assumptions is like an Exception 
+It wont fail the test case bit will raise the message 
+Assumptions.assumeTrue(false, () -> System.out.println("Failed in connection"));
+If failed then cant go beyond this line of code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

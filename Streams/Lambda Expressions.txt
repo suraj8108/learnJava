@@ -1,0 +1,228 @@
+###########################################
+Lambda Expression and Functional Interfaces
+###########################################
+
+https://www.javatpoint.com/java-lambda-expressions
+
+Anonymous Class are quick implmentation for an interfaces
+Anonymous Classes allow us to make code more concise, with help of such code, classes can be declared and instantiated immediately
+Anonymous Classes can be used only once
+#See Example in Projects 
+
+Disadantage of Anonymous Class is it is not much redable
+
+An alternate to Anonymous class in using a lambda Expression 
+#Lambda Expressions are short hand implementation for functional interfaces.
+#Functional interfaces are interfaces that have only one function for implementation
+#Implementing functional interfaces using Lambda functions allows us to treat functionality as method
+arguments or code as data 
+#Lambda expressions let us express instances of single method types more compactly  
+
+
+
+VargArray(IMP)
+public class ArrayDemo {
+
+     void printArray(int value, int... arr) //Mandator to be a last parameter 
+     {
+         for(int i:arr)
+         {
+             System.out.println(i);
+         }
+     }
+    
+public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+    ArrayDemo demo=new ArrayDemo();
+    demo.printArray(12,45,46,56,67,76);
+    
+    }
+
+}
+
+
+Functional Interface in Java 
+	Runnable Interface contains  only one function run
+	A runnable is passed to a thread
+	
+	Comparable
+	Interface contiains only compareTo method
+	
+	ActionListener
+	Contains actionPerformed method	
+	
+	Comparator
+	Calls the compare function
+	
+
+	Callable 
+	calls the call method
+
+Since Java SE8 introducts many factional interface
+
+1) Consumer
+	Consumer Functional interface accepts ony one argument and does not have a return value
+	#Eg: Consumer<Integer> c = (a) -> System.out.println(a*a);
+
+2) Bi-Consumer
+	Accepts two arguments and doesnt returns any value
+	
+	Methods of Consumer and BiConsumer
+		c1.accept(10) #calls the Consumer
+		c1.andThen(c2) # c1 is performed and then c2
+
+3) Predicate 
+	#Predicate functional Interface provides for test function.
+ 	#accepts an argument and returns boolean value
+	
+	Methods of predicate and BiPredicate:
+		p1.test(20) #calls the function p1
+		p1.and(p2).test(22) , p1.or(p2).test(22), p1.negate().test(20) # and operation on p1 and p2 outputs 
+
+4) BiPredicate
+	#It will accept two arguments and return boolean value
+
+5)Function and BiFunction Interface
+
+	Functions receives one value and returns one value
+	Function<String, Integer> fun = (a) ->  a.length();
+	System.out.println(a.apply("Suraj"));
+	One is of type of argument and another is type of return value;
+
+
+6) Supplier
+	There is only return type in this. It doesnt take any parameter 
+	Return can be Integer, List, object, etc
+	Supplier<List<Integer>> s = ()-> Arrays.asList(12,23,45,2,45);
+	System.out.println(s.get());
+
+
+#################################
+Method Refrences
+#################################
+
+
+#New feature in Java 8
+#Method refrence is used to refer methods of functional interface and provide defination to functional Interface
+
+Interface Calculate contains single functional Interface void calc(), class Add contains add() method have 
+implementation of calc() defined in. 
+#Instance method
+	Add obj = new Add();
+	Calculate c1 = obj::add;
+
+#Static method
+	Dont require intantiation
+	Calculate c1 = Add:add;
+#Constructor
+	Constructor add should be of same format
+	Calculate c1 = Add:new;
+	
+
+Refer Pratice Section for Complete Info
+
+##############
+ENUM 
+##############
+Enums are like classes. Used to fix the number of copies eg we have ony 7 days so we can create Enum so that no one can create a new Day in that
+Enums cant be instantiated
+
+
+##############
+StreamAPI
+##############
+
+Stream API is additional package in 8
+Stream API allows for functional type operatons on elements
+StreamAPI is used along with collections types for specific operations like map, filter and sort
+Basically we loop and compute the required outputs like sum of an array, multiplication of all elements
+
+-->Item is a class
+-->items is a list of Item
+Stream<Item> streamItem = items.stream();
+
+1) filter
+	filter the element from list, array, etc
+	contains single parameter
+	streamItem.filter( it -> it.getQuantity() > 50).forEach(System.out::println); 
+	
+	Determine whether it should be included
+	Parameter -> Predicate
+	Returns   -> new Stream
+
+2) reduce
+	Used to find sum of elements in an array
+	Optional<Integer> result = stream.reduce((a,b) -> a+b)
+
+	
+	parameter -> accumulator
+	Returns   -> an Optional describing the result
+	throws    -> NullPointer Exception
+
+3)collect
+	used to collectively get average value or sum form a array or list
+	we need to pass the Collectors inside collect
+	double average = streamItem1.collect(Collectors.summarizingDouble((a) -> a.getPrice())).getAverage();
+
+	parameter = Collectors
+	return    = can change for various outputs. can be List, Set, Long, Float, Double
+4)Map
+	functions to apply to each element
+
+	takes function as a parameter
+	Map((a) -> a%2 == 0) It will return true and false stream
+	
+	Parameter = Function
+	returns   = New Stream
+
+Fetaures of Stream 
+Stream doesnt store any data or elements
+Stream conveys elements from source such as data structure , array or I/O channels by creating a pipeling
+Stream classes are functional in nature
+Operations perform by stream do not modify source
+Stream are lazy and evaluates code only when required
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

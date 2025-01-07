@@ -1,0 +1,106 @@
+########################
+Ways to create a String
+########################
+
+1) Empty Stream
+	Stream.empty()
+2) Creating Stream from collection(list, set, etc)
+		Stream st = listItem.stream();
+3) Stream.of
+	Eg: Stream st = Stream.of(12,34,53,67,3,5,66);
+
+4) Builder Class(Stream.Builder)
+	Eg: See Project
+
+5) Stream.generate(Supplier)
+
+6) Stream.iterate
+
+7) Stream of primitive values
+	IntStream
+	
+
+#################
+Stream API Terminal Operations
+#################
+
+	Stream Operations are divided in to two parts
+	Terminal and Intermediate
+	#Terminal Operations return a single value
+	#Terminal Operations cannot be chained together to form a pipeline
+	Methods:
+		a) anyMatch(Predicator)
+			It takes a predicate for conditional evaluation and returns true if any  of the value matches the condition
+			
+		b) allMatch(Predicator)
+			It will return true of all the values matches the prodicator conditions in allMatch function
+		c) noneMatch(Predicator)
+			Opposite of allMatch()
+		d) collect()
+			collect does an operation to collect internal elements in to collections or object of some kind
+			For this collector interface is used
+		e) count()
+			count number of elements in a stream
+		
+		f) findAny()
+			Randomly returns any value from a stream 
+			returns optional object so we use get() funtion
+
+		8) findFirst()
+			Returns the first value from the stream of string 
+			returns optional object so we use get() funtion
+
+		9) forEach()	
+			iterates to all the element of a stream
+
+		10) min
+			We need to pass comparator in it
+			Returns Optional object
+			
+			
+		11) max
+			We need to pass comparator in it
+			Returns Optional object
+			
+		12) reduce
+			same as filter but filter rturns boolean and it returns Optional<Type>
+			
+		13) toArray
+			Converts stream to array
+
+
+#####################################
+Intermediary operations in Stream
+#####################################
+
+#filter
+#map
+#flatMap  -> Is used in list of list. Returns new Stream
+#distinct -> remove duplicate 
+	  -> Returns new Stream
+#sorted   -> sorts the element. Returns the new Stream. Can contain Comparators
+#peek 	  -> Used for debugging and dones operation for each of the values in an stream
+	  -> Used when want to print or associate with all the values of stream
+	  
+	  -> Parameter Consumer	  
+	  -> Returns new Stream
+#limit    -> limits to that much values .limit(3)
+	  -> Returns new Stream
+#skip     -> skips the number of item from start
+	  -> Parameter n (number of element to skip)
+	  -> Returns new Stream
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

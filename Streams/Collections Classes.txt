@@ -1,0 +1,136 @@
+Collections 
+Queue
+	DeQueue
+
+Lambda Expressions and functional Interfaces
+
+Stream API
+
+
+
+
+
+-------------------------------------------------------
+Java Collection Interface
+-------------------------------------------------------
+					
+					Collections							Map   		Iterator
+				_________|__________					 |				|
+			   |		 |			|				Sorted Map		List Iterator
+			 List	 	Set		  Queue
+						 |			|
+					  SortedSet	   DeQueue
+		
+
+Java Collection Framework:
+	-> It provides different set of interfaces and classes to impement various data structure and algorithms.
+	-> Works like a library, providing both interfaces that define various collections and classes that implement them.
+	-> "java.util.*" contains all the classes and interfaces for the collection framework.
+	-> Key Interfaces are List, Set, Queue, Deque.
+
+	
+Java Collection Interface:
+	-> Root interface of the collection framework.
+	-> This interfaces may also have subinterfaces that are implemented by the Java classes.
+	-> All the methods of Collection interface is present in the sub-interfaces.
+	-> SubInterfaces of Collections are List, Set 
+
+
+------------------------------------------------
+Classes that implements List as an interface
+------------------------------------------------
+	1. ArrayList		Collection <--- extends --- List <------- implements -------- ArrayList
+		-> In array list, methods are not synchronized. Instead, it uses the Collections.synchronizedList() method that synchronizes the list as a whole.
+		
+	2. Vector		
+		-> The Vector class synchronizes each individual operation. 
+		-> This means whenever we want to perform some operation on vectors, the Vector class automatically applies a lock to that operation.
+		-> It is recommended to use ArrayList in place of Vector because vector is less efficient.
+		
+	3. LinkedList
+	4. Stack
+		-> Collections <--- extends --- List <--- implements ----- Vector <---- entends ----- Stack
+
+------------------------------------------------
+Queue Interface in Java 
+------------------------------------------------
+
+	=> It implements FIFO data structure
+	=> Comes in heirarhy of Collection[Extends Collections]
+	=> It is an ordered list of Object with use limited inserting elements at the end of the list and deleting element
+		from start of the list
+
+Queue is implemented using 
+	https://www.programiz.com/java-programming/queue
+	
+	1.LinkedList
+	2.PriorityQueue
+	3.Array Dequeue
+
+	1) Deque
+	#Deque interface extends Queue Interface
+	#ArrayDeque class implements Deque(Doubly Ended Queue)
+	# 				Deque 
+					  |
+				----------------
+				|				|
+			 ArrayDeque		LinkedList
+			 
+	Methods 
+		removeFirst(), removeLast(), pollFirst(), pollLast(), peek(), pop(), offerFirst(), offerLast(), size(),pollFirst()
+	pollLast(), addFirst(), addLast()
+		
+		a) ArrayDeque
+			It implements two interfaces 
+				Collection <--- extends ----- Queue <---- extends ----- Deque
+												^						 ^
+												|________________________|
+															|
+														Array DeQueue
+
+
+	2) PriorityQueue 
+	#	Collections <--- extends --- Queue <--- implements ----- PriorityQueue
+	While popping elements will be popped in an order
+	#PriorityQueue extends AbstractQueue(which contains basic Queue operations) implements Serializable
+	#PriorityQueue allows us to process objects on basis of priority
+
+	Since a priority queue needs to compare its elements and order them accordingly, the user defined class must implement the Comparable interface,
+	or you must provide a Comparator while creating the priority queue. Otherwise, the priority queue will throw a ClassCastException 
+	when you add new objects to it.
+
+
+Map:
+	https://www.programiz.com/java-programming/map
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

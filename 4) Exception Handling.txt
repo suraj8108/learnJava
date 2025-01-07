@@ -1,0 +1,225 @@
+
+											----------------------------------------
+														Exception Handling
+											----------------------------------------
+											
+	-> The core advantage of exception handling is to maintain the normal flow of the application.
+
+	-> The java.lang.Throwable class is the root class of Java Exception hierarchy inherited by two subclasses: Exception and Error.
+			--Throwable
+				|
+				 ---- Exception
+				|
+				 ----- Error
+	
+	-> There are mainly two types of exceptions: 
+		* Checked 
+		* Unchecked		-	An error is considered as the unchecked exception. 
+		
+	However, according to Oracle, there are three types of exceptions namely:
+
+		1) Checked Exception
+		2) Unchecked Exception
+		3) Error
+
+	1) Checked Exception
+		* The classes that directly inherit the Throwable class except RuntimeException and Error are known as checked exceptions. 
+		* For example, IOException, SQLException, etc. Checked exceptions are checked at compile-time.
+
+	2) Unchecked Exception
+		* The classes that inherit the RuntimeException are known as unchecked exceptions. 
+		* For example, ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, etc. 
+		* Unchecked exceptions are not checked at compile-time, but they are checked at runtime.
+
+	3) Error
+		* Error is irrecoverable. Some example of errors are OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+
+	Exception Handling KeyWords:
+		1) try
+		2) catch
+		3) finally
+		4) throw
+		5) throws
+
+	Blocks:
+
+		try{			try{
+		
+		}			}
+		finally{		catch(ExcetionName e){
+
+		}			}
+
+	Catch Block:
+		* The catch block must be used after the try block only. You can use multiple catch block with a single try block.
+		* The JVM firstly checks whether the exception is handled or not. If exception is not handled, JVM provides a default exception handler that performs 
+			the following tasks:
+				a) Prints out exception description.
+				b) Prints the stack trace (Hierarchy of methods where the exception occurred).
+				c) Causes the program to terminate.
+		
+		* But if the application programmer handles the exception, the normal flow of the application is maintained, i.e., rest of the code is executed.
+
+		* Once Exception is raised it wont run the rest of the statement even if it is handeled by a catch block.
+		try{  
+		
+			int data=50/0; 	//may throw exception   
+							// if exception occurs, the remaining statement will not exceute  
+	
+			System.out.println("rest of the code");  
+		}  
+			// handling the exception   
+		catch(ArithmeticException e){  
+			System.out.println(e);  
+		} 
+		
+		O/P = java.lang.ArithmeticException: / by zero
+
+
+	** PRO Tip : Compile time error is raised if catch block with (Exception e) is kept first and the rest of the below Exception wont be raised 
+
+-----------------
+Nested Try Block
+-----------------
+
+	* When any try block does not have a catch block for a particular exception, then the catch block of the outer (parent) try block are 
+	  checked for that exception, and if it matches, the catch block of outer try block is executed.
+
+	* If none of the catch block specified in the code is unable to handle the exception, then the Java runtime system will handle the exception. 
+	  Then it displays the system generated message for that exception.
+
+-------------------
+Java Finally Block
+-------------------
+	* Note: If you don't handle the exception, before terminating the program, JVM executes finally block (if any).
+	* Rule: For each try block there can be zero or more catch blocks, but only one finally block.
+	* Note: The finally block will not be executed if the program exits 
+		-> either by calling System.exit() 
+		-> by causing a fatal error that causes the process to abort.
+
+----------------------
+Java Throw Exception
+----------------------
+
+	* The Java throw keyword is used to throw an exception explicitly.We can even send the message along with the exception.
+	* We can throw either checked or unchecked exceptions in Java by throw keyword. It is mainly used to throw a custom exception
+
+	Eg: throw new exception_class("error message");  
+
+	* If we throw checked Exception then it is mandatory to use throws the exception or handle the exception using try catch
+
+	Eg of Checked Exception = IOException, ClassNotFoundException,
+	Eg of UnChecked Exception = ArithmeticException, ArrayIndexOutOfBoundException
+
+	UserDefinded Exception
+	
+		=> UserDefined excpetion class if extends Exception or Throwable it makes it is an checked Exception requires throws keyword and try catch block to handle 
+		   because the are not bydefault propogated.
+
+		=> UsedDefined excpetion class if extends RunTimeException it makes it is an Unchecked Exception not required to handle the exception because they are 
+	       bydefault propogated.
+
+	Note: If we throw checked exception from a method, it is must to handle the exception or declare in throws clause.
+
+	Note: Every subclass of Error and RuntimeException is an unchecked exception in Java. A checked exception is everything else under the Throwable class.
+
+
+----------------------
+Exception Propogation
+----------------------
+Note: By default Unchecked Exceptions are forwarded in calling chain (propagated).
+Note: By default, Checked Exceptions are not forwarded in calling chain (propagated).
+
+
+--------------------
+Java throws keyword
+--------------------
+
+	Advantage of Java throws keyword
+		-> Now Checked Exception can be propagated (forwarded in call stack).
+		-> It provides information to the caller of the method about the exception.
+
+	Rule: If we are calling a method that declares an exception, we must either caught or declare the exception.
+		1) We have caught the exception i.e. we have handled the exception using try/catch block.
+		2) We have declared the exception i.e. specified throws keyword with the method.
+
+--------------------
+Finalize method
+--------------------
+	-> finalize is the method in Java which is used to perform clean up processing just before object is garbage collected.
+	
+	-> finalize method is used to perform the cleanup prior to the object is garbage collected.
+	-> It has limitation and depricated.
+
+	-> System.gc();    //calling the garbage collector using gc() 
+	
+	Alternative:
+		-> For resource management try-with-resource is being used.
+		
+-------------------
+try with resource
+-------------------
+	-> Ensures that resource are closed automatically at the end of the statement.
+	-> The helps to overcome
+		* risk of resource leaks
+		* cleaner code
+	
+	Syntax:
+		// Closes BufferedReader automatically if any exception raised in try block.
+		
+		try(BufferedReader br = new BufferedReader(new FileReader("file.txt")) {
+			//	
+		} catch(Exception e){
+			//
+		}
+		
+--------------------------------------------------
+Exception Handling with Method Overriding in Java
+--------------------------------------------------
+
+	https://www.javatpoint.com/exception-handling-with-method-overriding
+
+	* If the superclass method does not declare an exception
+		=>If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but 
+			it can declare unchecked exception.
+
+	* If the superclass method declares an exception
+		=> If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no 
+			exception but cannot declare parent exception.
+
+-------------------
+Custom Exception
+-------------------
+	-> We need to write the constructor that takes the String as the error message and it is called parent class constructor.
+	-> Throwable is a base class where all derived class(Exception) inherits functions of Throwable Class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

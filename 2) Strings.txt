@@ -1,0 +1,250 @@
+
+											--------------------------------
+													STRING IN JAVA
+											--------------------------------
+											
+https://www.javatpoint.com/java-string
+
+	-> String is basically an object that represents sequence of char values..
+	-> The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+
+	-> CharSequence interface is implemented by String, StringBuilder, StringBuffer Class.Using this we can create the String using this classes only.
+
+	-> Java String is immutable(We cant change its value) which makes it as thread safe. Whenever we change a new instance will be created.
+	-> For mutable string we can use StringBuffer and StringBuilder
+
+Two ways to create an String
+
+	1) Using literal
+		String s1="Welcome";  
+		String s2="Welcome";//It doesn't create a new instance. Pointing to a same instance. 
+
+		-> While creating a string JVM checks for string constant pool. If string exists then no need to create a new String just give the reference of that.
+		-> It is preferred to use String literals as it allows JVM to optimize memory allocation.
+
+	2) Using new keyword
+		-> It adds one more layer of creating an object in heap memory
+		-> We we create a String using new keyword, JVM handles it as 
+			* Heap Memory: 				A new string object is created in the heap memory.
+			* String Constant Pool: 	The literal “Welcome” is placed in the string constant pool if it is not already present.
+			* Reference: 				The variable s will refer to the new string object in the heap memory, not the one in the string constant pool.
+		-> Using new keyword object is always created in the heap memory, even if the literal already exists in the string constant pool.
+
+String Class
+	* String class is Final so that no one can override and change its implementation
+	
+	Constructor of String
+		* String(); //Sets value ""
+		* String(String value)
+		* String(char[] value)
+		* String(char[] value, int offset, int count)     			
+
+	Compare Strings in Java
+		1) equals() 	compares original contents
+		2) ==	    	compares refrence not values
+		3) compareTo()	compares value lexicographically
+
+	Advantages of Immutable Strings
+		* ClassLoader(String []args)
+		* Thread Safe
+		* Security
+		* Heap Space
+
+
+	Methods of String
+	
+		1) .charAt(index)							7) .replace(CharSequence old, CharSequence new)
+		2) .length()								8) .equals(Object a);
+		3) .substring(index) 						9) .equalsIgnoreCase(String another)	
+		//index from where we want till last		10) .toLowerCase()				
+		4) .substring(beginindex, endindex)			11) .toUpperCase()
+		5) .contains(CharSequence s)				12) .indexOf(String substring)
+		6) .concat(String s)       
+
+	* Concatenation Methods
+	
+		1) Using symbol "+"
+
+			IMP <<<<<<<---------------->>>>>>>>NOTE: After a string literal, all the + will be treated as string concatenation operator.
+		
+			Java Compiler Transforms this 
+				
+				String s="Sachin"+" Tendulkar";  
+					To This
+				String s=(new StringBuilder()).append("Sachin").append(" Tendulkar).toString();  
+
+			Concatenation is implemeted through String Builder
+
+		2) Using Method "concat()"
+			//String s3 = s1.concat(s2)
+			
+			a)String concatenation using StringBuilder class
+				.append(val)	val = Objects, StringBuilder, int, char, CharSequence, boolean, float, double	
+		
+			b) String concatenation using format() method
+				String s = String.format("%s%s",s1,s2);   //String 3 to store the result  
+		
+			c) String concatenation using String.join() method (Java Version 8+)
+				String.join() accepts argument first a separator and an array of String objects.
+		
+			d) String concatenation using Collectors.joining() method (Java (Java Version 8+)
+
+
+	* Substring in Java
+		Note: Index starts from 0.
+			
+			public String substring(int startIndex):
+			
+			public String substring(int startIndex, int endIndex):
+			startIndex: inclusive
+			endIndex: exclusive
+
+
+	* Split in Java
+		Using delimiter or a string 
+		String[] sentences = text.split("\\.");
+
+	* toUpperCase()
+	* toLowerCase()
+	* trim() //eliminates white spaces before and after the String.
+	* startsWith(String), endsWith(String) returns boolean
+	* .charAt()
+	* length()
+	* String.valueOf(1) -> converts int, long, float, double, boolean, char and char array into String.
+	* .replace(old, new) -> updates all the occurences
+
+									---------------------------------------
+											Java StringBuffer Class
+									---------------------------------------
+
+	Sting Buffer is same as string class only difference is it is mutable
+
+Constructor
+	* StringBuffer() 		 		// It creates an empty String buffer with the initial capacity of 16.
+	* StringBuffer(String str) 		// It creates a String buffer with the specified string..
+	* StringBuffer(int capacity) 	// It creates an empty String buffer with the specified capacity as length.
+
+Methods of StringBuffer
+	1) .append(String)							// can append boolean, char, string, float, int, double, 
+	2) .insert(offset, String)					// can insert boolean, char, string, float
+	3) .replace(startIndex, endIndex, string)	// endIndex not Included
+	4) .delete(startIndex, endIndex) 			// endIndex not Included
+	5) .reverse()
+
+
+									----------------------------------------
+											Java StringBuilder Class
+									----------------------------------------
+Constructor same as StringBuffer class
+
+Same all fnctions as StringBuffer
+
+
+									----------------------------------------
+											String VS StringBuffer
+									----------------------------------------
+	-> String is slow and consumes more memory when we concatenate too many strings
+	-> String is immutable
+	-> Uses String constant pool while String buffer uses Heap Memory
+
+
+									----------------------------------------
+										StringBuffer VS StringBuilder
+									----------------------------------------
+1)
+StringBuffer is synchronized i.e. thread safe. It means two threads can't call the methods of StringBuffer simultaneously.
+StringBuilder is non-synchronized i.e. not thread safe. It means two threads can call the methods of StringBuilder simultaneously. 
+
+2)
+StringBuffer is less efficient than StringBuilder.
+StringBuilder is faster and high in performance like append, delete, replace is faster compare to StringBuffer
+
+3) 
+StringBuffer was introduced in Java 1.0
+StringBuilder was introduced in Java 1.5
+
+									----------------------------------------
+												String Tokenizer
+									----------------------------------------
+	-> java.util.StringTokenizer
+	-> Similar to Split method
+	-> Divides a string in to tokens and loops to each of them
+
+	-> The StringTokenizer class is deprecated now. It is recommended to use the split() method of the String class or the Pattern class that 
+		belongs to the java.util.regex package.
+
+	StringTokenizer st = new StringTokenizer("my name is khan"," ");  
+
+Methods
+	a) boolean hasMoreTokens()
+	b) String nextToken()
+	c) boolean hasMoreElements() //same as hasMoreTokens()
+	d) Object nextElement()	  //It is the same as nextToken() but its return type is Object.
+	e) int countTokens()
+
+
+
+									----------------------------------------
+												Immutable Class
+									----------------------------------------
+
+	Java Immutable class 
+		* String
+		* Boolean
+		* Byte 
+		* Short
+		* Integer
+		* Long
+		* Float
+		* Double, etc 
+		* Wrapper classes and String class
+		
+	-> We can make a class an Immutable by making class as final, no setter method and all variables as final
+
+	-> The class is immutable because:
+		a) The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+		b) The class is final so we cannot create the subclass.
+		c) There is no setter methods i.e. we have no option to change the value of the instance variable.
+
+	-> toString() in Java
+		Prints the Object. Compiler internally invokes the toString() method on the object. We can ovveride it.
+		By default it prints HashCode of object but by overriding it we can print as we want.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+
+************************
+Inner Class
+************************
+
+	-> Java inner class or nested class is a class that is declared inside the class or interface.
+	-> It can access all the members of the outer class, including private data members and methods.
+
+There are three advantages of inner classes in Java. They are as follows:
+
+	1) Nested classes represent a particular type of relationship that is it can access all the members (data members and methods) of 
+	the outer class, including private.
+	
+	2) Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces
+	in one place only.
+	
+	3) Code Optimization: It requires less code to write.
+
+Example:
+
+	class TestMemberOuter1{  
+		private int data=30;  
+		
+		class Inner{  
+			void msg(){System.out.println("data is "+data);}  
+		}  
+		
+		public static void main(String args[]){  
+			
+			TestMemberOuter1 obj=new TestMemberOuter1();  	// Create object of outer class
+			TestMemberOuter1.Inner in=obj.new Inner();  	// Create object of inner class
+			in.msg();  
+		
+		}  
+	}
+
+Instantiate inner class
+OuterClassReference.new MemberInnerClassConstructor();
