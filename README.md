@@ -17,6 +17,7 @@ because knowledge is always an open source.
 - Inner Class
 - IO Operations
 - Multi Threading
+- Java8 features
 - Certificate & MTLS (JWKs and Certs)
 
 ## Introduction
