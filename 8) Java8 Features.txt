@@ -1,0 +1,124 @@
+Major Java 8 Features
+	=> Lambda Expression
+	=> Functional Interface
+	=> Stream API
+	=> Optional Class
+	=> Static, Default methods in Interface
+	=> forearch method
+
+
+1. Functional Interface
+	https://www.javatpoint.com/java-8-functional-interfaces
+	
+	-> Interface that has only one abstract method is called functional interface.
+	-> Lambda expression is one type of functional interface.
+	-> @FunctionalInterface built in annotation.
+	
+	interface MyFunctionalInterface {
+		void myMethod)(String s);
+	}
+	
+	Predefined Functional Interface
+		a. 	Supplier 		=> Represents a supplier of results.
+		b.	Consumer		=> Represents an operation that accepts a single input argument and returns no result.
+		c.	BiConsumer		=> Represents an operation that accepts two input arguments and returns no result.
+		c. 	Function		=> Represents a function that accepts one argument and produces a result.
+		c.	Bifunction		=> Represents a function that accepts two arguments and returns a a result.
+		d. 	Predicate		=> Represents a predicate (boolean-valued function) of one argument.
+		d. 	BiPredicate		=> Represents a predicate (boolean-valued function) of two argument.
+		e. 	UnaryOperator	=> Represents an operation on a single operand that produces a result of the same type as its operand.
+		f.  BinaryOperator	=> Represents an operation upon two operands of the same type, producing a result of the same type as the operands.
+
+2. Lambda Expression
+	https://www.javatpoint.com/java-lambda-expressions
+	
+	-> Provides clear and concise way to represent a function.
+	-> Helps to iterate, filter and extract data from the collection.
+	-> Provides the implementation of an interface that has a functional interface.
+	-> Lambda Function (args list) => { body of lambda expression }
+	-> Lambda Expression with forEach
+		list.forEach(n -> System.out.println(n))
+
+3. Java Method References
+	-> Used to refer methods of functional interface.
+	-> Each time when we use a lambda expression we can replace that with that with method reference.
+	-> References to a static variable | Reference to an instance method | Reference to a constructor
+	-> interface Sayable {
+			void say();
+		}
+		
+		public class MethodReference {  
+			public static void saySomething(){  
+				System.out.println("Hello, this is static method.");  
+			}  
+			public static void main(String[] args) {  
+				// Referring static method  
+				Sayable sayable = MethodReference::saySomething;  
+				// Calling interface method  
+				sayable.say();  
+			}
+		}
+
+4. Java Stream
+	https://www.javatpoint.com/java-8-stream
+		
+		-> Present in util package.
+		-> Stream is functional in nature. Operation performed on stream does not modifys its source.
+		-> Stream is not a data structure instead it takes the input from collection, arrays or I/O channels.
+		-> Streams are ordered and sequenctial, allowing the JVM to understand and work with them effeicently.
+		-> Streams in Java is an sequence of Objects that supports various methods which can be pipelined to introduce the desired result.
+		
+		-> Stream is lazy and evaluates code only when required.
+			=> 	This means that intermediate operation(filter, map, sorted) is not performed immediately. 
+				It is perfromed when terminal operation (forEach, collect, reduce) is done.
+			=> Eg: arr.stream().filter(n -> n%2 == 0)			// Intermediate Operation
+								.map(n -> n*2)					// Intermediate Operation
+								.forEach(System.out::println);	// Terminal Operation
+		-> After terminal operation is invoked after that we can not invoke any intermediate operation.
+		
+		Intermediate Operation
+			-> It is those operation which returns the another stream.
+			-> Typically used to transform or filter the data.
+			-> Since they are lazy which means they do not perform any processing until a terminal operation is called.
+			Eg:
+				.map(Function<T,R>) 	=> Transform each element of the stream into another stream using provided function
+				.filter(Predicate<R>) 	=> Selects elements from the stream based on a specified condition. 
+				.distinct()				=> Removes duplicate elements from the stream.
+				.sorted()				=> Sorts the elements of the stream.
+				.limit(long n)			=> Truncates the stream to be no longer than the specified size.
+				.skip(long n)			=> Skips the first n elements of the stream.
+				.peek(Consumer<T>)		=> Performs a specified action on each element of the stream without consuming the elements.
+				
+		Terminal Operation
+			-> Terminal operations are those operations that consume the stream and produce a result, such as a value, a collection, or even a side effect. 
+			-> Once a terminal operation is invoked, the stream is processed and cannot be reused.
+			Eg:
+				.forEach(Consumer<T>)			=> Performs an action for each element of the stream.
+				.collect(Collector<T, A, R>)	=> Reduces the elements of the stream into a mutable result container, such as a list or a map.
+				.reduce(BinaryOperator<T>)		=> Reduces the elements of the stream to a single value using an associative accumulation function.
+				.count()						=> Returns the count of elements in the stream.
+				.anyMatch(Predicate<T>)			=> Returns true if any element of the stream matches the given predicate.
+				.allMatch(Predicate<T>)			=> Returns true if all elements of the stream match the given predicate.
+				.noneMatch(Predicate<T>)		=> Returns true if no elements of the stream match the given predicate.
+				.findFirst()					=> Returns an Optional describing the first element of the stream, or an empty Optional if the stream is empty.
+				.findAny()						=> Returns an Optional describing some element of the stream, or an empty Optional if the stream is empty.
+		
+		Refer Example Practice
+		Reduce Example
+			-> int sum = nums.reduce((accumulator, currentValue) => {return accumulator + currentValue}, 0)
+			-> inital value of accumulator is set as 0.
+		
+5. Java Optional Class
+		https://www.javatpoint.com/java-8-optional
+		
+		-> Optional is a class which is public and final.
+		-> It is used to deal with the NullPointerException.
+		-> We can use its function .isPresent() if there is any value present or not.
+
+6. Java Type Inference
+		https://www.javatpoint.com/java-8-type-inference
+		
+		-> In Java 7 we used to define the type on both left and right side as : List<Integer> list = new ArrayList<Integer>();  
+		-> In Java 8, you can call specialized method without explicitly mentioning of type of arguments.
+		
+		-> We can also create a Generic class and methods.
