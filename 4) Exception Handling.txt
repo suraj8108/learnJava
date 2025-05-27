@@ -92,6 +92,7 @@ Nested Try Block
 -------------------
 Java Finally Block
 -------------------
+	* Finally block gets executed regardless whether the exception is thrown or handled via catch block.
 	* Note: If you don't handle the exception, before terminating the program, JVM executes finally block (if any).
 	* Rule: For each try block there can be zero or more catch blocks, but only one finally block.
 	* Note: The finally block will not be executed if the program exits 
@@ -109,8 +110,8 @@ Java Throw Exception
 
 	* If we throw checked Exception then it is mandatory to use throws the exception or handle the exception using try catch
 
-	Eg of Checked Exception = IOException, ClassNotFoundException,
-	Eg of UnChecked Exception = ArithmeticException, ArrayIndexOutOfBoundException
+	Eg of Checked Exception = FileNotFoundException, ClassNotFoundException, SQLException, IOException, ClassNotFoundException
+	Eg of UnChecked Exception = NullPointerException, ArithmeticException, ArrayIndexOutOfBoundException, ClassCastException
 
 	UserDefinded Exception
 	

@@ -44,11 +44,11 @@ Threads can be created by two ways:
 			-> Example coded.
 			
 		2. Implementing the Runnable Interface
-			-> Create a class (MyRunnable) that implements the Runnable Functional Interface and provides the implementation of run method.
-			-> The instance of this class(MyRunnable) is passed in Thread to create it as thread.
-					Thread th = new Thread(new MyRunnable());
+			-> Create a class (MyRunnableThread) that implements the Runnable Functional Interface and provides the implementation of run method.
+			-> The instance of this class(MyRunnableThread) is passed in Thread to create it as thread.
+					Thread th = new Thread(new MyRunnableThread());
 					
-			-> Advantage of this is that we can now extend any other class as well from (MyRunnable) class. Earlier approach has that restriction.
+			-> Advantage of this approach is that we can now extend any other class as well from (MyRunnableThread) class. Earlier approach has that restriction.
 		
 		IMP
 			-> When program calls Thread.start() a new thread gets created and then the run method is executed.
@@ -69,10 +69,10 @@ Life cycle of thread
 Methods of Threads
 ------------------
 
-	* start()				->	Begins the execution of the thread. The JVM calls the run() method of this thread. 
+	* start()				-> Begins the execution of the thread. The JVM calls the run() method of this thread. 
 	* sleep(long millis)	-> Causes the currently executing thread to sleep (pause execution) for the specified number of milliseconds.
 	* interrupt()			-> Interrupts a thread that is in the sleeping, waiting, or blocked state.
-	* t1.join() 			-> Waits for the thread t1 to die. This method allows one thread to wait for the completion of another.
+	* t1.join() 			-> Waits for the thread t1 to die. This method allows main thread to wait for the completion of thread t1.
 	* isAlive()				-> Tests if the thread is alive (i.e., it has been started and has not yet died).
 	* getName() /			-> Gets or sets the name of the thread.
 		setName(String name)
@@ -93,7 +93,7 @@ Main Thread
 	* The default priority of Main thread is 5 and for all remaining user threads priority will be inherited from parent to child.
 
 ----------------------------	
-Priority In thread Sheduling 
+Priority In thread Sheduling
 ----------------------------
 	-> If same priority then first come first serve basis
 	-> We cant run thread twice
@@ -108,8 +108,7 @@ Demon Thread
 	Note: If you want to make a user thread as Daemon, it must not be started otherwise it will throw IllegalThreadStateException.
 
 	Garbage Collector
-		-> The Garbage collector of JVM collects only those objects that are created by new keyword. So if you have created any object without new, 
-			you can use finalize method to perform cleanup processing (destroying remaining objects).
+		-> The Garbage collector of JVM collects only those objects that are created by new keyword. 
 
 		-> Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object 
 			is garbage collected.
@@ -117,7 +116,14 @@ Demon Thread
 -------------------------
 Synchronization
 -------------------------
+https://www.javatpoint.com/synchronization-in-java
+
 	-> It is the concept of ensuring multiple threads to interact with shared resource safely.
+	
+	Key Concepts:
+		-> Synchronized Method: A method can be declared synchronized to ensure that only one thread can execute it at a time.
+		-> Synchronized Block: A block of code within a method can be synchronized on a specific object to provide more granular control over synchronization.
+		
 	
 	* Synchronized Block
 		-> When a thread invokes a synchronized method, it automatically acquires the lock for that object and releases it when the thread completes its task.

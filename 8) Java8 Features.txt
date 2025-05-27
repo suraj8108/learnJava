@@ -42,7 +42,7 @@ Major Java 8 Features
 3. Java Method References
 	-> Used to refer methods of functional interface.
 	-> Each time when we use a lambda expression we can replace that with that with method reference.
-	-> References to a static variable | Reference to an instance method | Reference to a constructor
+	-> References to a static method | Reference to an instance method | Reference to a constructor.
 	-> interface Sayable {
 			void say();
 		}

@@ -36,7 +36,7 @@ Java Advantages and DisAdvantages
 		-> Platform Independent, Object Oriented, Security, Enterprise Level Application.
 		-> Build in thread support.
 	DisAdvantages:
-		-> Slow compare to C++ because of JVM and Memory Management
+		-> Slow compare to C++ because of JVM and Memory Management.
 		-> Java's automatic memory management leads to slower performance & increased memory usage.
 		-> Multiple inhertance is partially done.
 
@@ -90,7 +90,7 @@ JRE:
 		3. Core Java API's
 			=> JRE includes essentials API's for tasks like I/O networking, database access.
 
-NOTE: JDK and JRE both are platform dependent. Different OS will have theie different JRE and JDK.
+NOTE: JDK and JRE both are platform dependent. Different OS will have their different JRE and JDK.
 
 JVM:
 	-> JVM is an abstract machine which provides the runtime environment in which Java bytecode can be executed.
@@ -118,7 +118,7 @@ Memory Management in Java
 	Stack Memory
 		=> Stack memory is a region of memory allocated to each thread when it is created.
 		=> Purpose: It stores information related to method execution and local variables.
-		=> Order: Follows a Last-In-First-Out (LIFO) order.
+		=> Order: Follows a First-In-Last-Out (FILO) order.
 		=> Lifetime: Variables in the stack live until the function returns.
 		=> Scope: Limited to the thread where it was created.
 		=> Error: If there’s no space left for new objects, it throws a java.lang.StackOverflowError.
@@ -147,7 +147,7 @@ Memory Management in Java
 		=> Part of heap space where it stores details about the 
 			class structures => fully qualified name of classes, super class details, Access modifiers
 			static variables => Static variables, final fields,
-			contants, method code => Bytecode of the methods & constructor
+			constants, method code => Bytecode of the methods & constructor
 
 ----------------------------------------
 Garbage Collection
@@ -301,6 +301,10 @@ Pillars of OOPS
 	-> Polymorphishm
 	-> Abstraction
 
+									--------------------------------------
+												ENCAPSULATION
+									--------------------------------------
+
 8) Constructor
 	-> A Java constructor cannot be abstract, static, final, and synchronized
 	-> If there is no constructor in a class, compiler automatically creates a default constructor.
@@ -344,6 +348,10 @@ Pillars of OOPS
 	we can pass this as a parameter in methods or in constructor
 	this returns the current class instance
 	
+									--------------------------------------
+												INHERITANCE
+									--------------------------------------
+									
 11)Inheritance(IS-A Relationship)
 
 	Q) Why Multiple Inheritance is not supported in java ?
@@ -411,13 +419,29 @@ Pillars of OOPS
 			-> Must have same name as the parent class.
 			-> Method must have the same parameter as in the parent class.
 			-> There must be a IS-A relationship.
+	Note: The return type could be different but the childs return type should be covariant to parents return type.
+	
 	--> Java method overriding is mostly used in Runtime Polymorphism
 	--> Static Method cannot be overridden. It is because the static method is bound with class whereas instance method 
 	    is bound with an object. Static belongs to the class area, and an instance belongs to the heap area.
 	--> We cant ovveride main method in Java because it is static.
 	
 15) Covariant Return Types
-	--> Child return this can be of type parent and can be over ridden by the parent method having return type as Parent	
+	--> In case of Method overriding Child methods return type can be different of parent return type, but the child class return type should be an 
+		instance of parents return type	
+	--> For example, 
+	class Animal {
+		public Animal getAnimal(String name){
+			return new Animal(name);
+		}
+	}
+	
+	class Dog extends Animal{
+		public Dog getAnimal(){			// Overridden Method here Dog is an covariant return type.
+			return new Dog();
+		}
+	}
+RadhaRani
 
 16) super keyword in Java
 	--> Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred 
@@ -476,7 +500,7 @@ Pillars of OOPS
 			Parent				Parent
 			   ^ 				  |
 			   |				  |
-			   |(UpCasting)			  |(Down Casting)
+			   |(UpCasting)		  |(Down Casting)
 			   |				  |
 			   |				  V
 			 Child				Child

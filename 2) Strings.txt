@@ -202,49 +202,34 @@ Methods
 	-> We can make a class an Immutable by making class as final, no setter method and all variables as final
 
 	-> The class is immutable because:
-		a) The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
-		b) The class is final so we cannot create the subclass.
-		c) There is no setter methods i.e. we have no option to change the value of the instance variable.
+		a) The class is final so we cannot create the subclass.
+		b) Make all fields private and final to prevent modification after initialization.
+		c) Provide a constructor to initialize the fields.
+		d) There is no setter methods i.e. we have no option to change the value of the instance variable.
+		e) Ensure that methods returning mutable objects return copies to prevent external modification.
 
-	-> toString() in Java
-		Prints the Object. Compiler internally invokes the toString() method on the object. We can ovveride it.
-		By default it prints HashCode of object but by overriding it we can print as we want.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	Ways to break the Immutability:
+		1. Using Reflection 
+			-> Using Java Reflection, you can access and modify private fields of a class.
+		
+		2. Using Serialization and Deserialization:
+			-> If the class implements Serializable, you can modify the state during deserialization.
+		
+		3. Mutable Fields: 
+			-> If the class contains mutable fields and exposes them directly or indirectly, the immutability can be broken.
+		
+	
+Singleton Class:
+	-> A singleton class is a design pattern that restricts the instantiation of a class to one single instance.
+	-> This is useful when exactly one object is needed to coordinate actions across the system.
+	
+	-> Class can be made singleton by:
+		-> Make Private Constructor - No access to create an instance outside.
+		-> Static Instance in the class that refers to the single instance of Singleton class.
+		-> public static method to return the static instance reference.
+	
+toString() in Java
+	-> Prints the Object. Compiler internally invokes the toString() method on the object. We can ovveride it.
+	-> By default it prints HashCode of object but by overriding it we can print as we want.
 
 

@@ -1,17 +1,18 @@
-OutputStream vs InputStream
 
-OutputStream
-Java application uses an output stream to write data to a destination; it may be a file, an array, peripheral device or socket.
+										------------------------------------------------------------
+														java.io.* Package
+										------------------------------------------------------------
 
-InputStream
-Java application uses an input stream to read data from a source; it may be a file, an array, peripheral device or socket.
-
+---------
+InputStream vs OutputStream  
+---------
 https://www.javatpoint.com/java-io
-
-OutputStream class
-OutputStream class is an abstract class. 
-It is the superclass of all classes representing an output stream of bytes. 
-An output stream accepts output bytes and sends them to some sink.
+	
+	OutputStream
+		> Java application uses an output stream to write data to a destination; it may be a file, an array, peripheral device or socket.
+		> OutputStream class is an abstract class. 
+		> It is the superclass of all classes representing an output stream of bytes. 
+		> An output stream accepts output bytes and sends them to some sink.
 
 Methods:
 1) write(int) throws IO Exception
@@ -20,11 +21,15 @@ Methods:
 4) close() throws IO Exception
 
 InputStream class
-InputStream class is an abstract class. It is the superclass of all classes representing an input stream of bytes.
 
-Methods:
-1) read()     throws IO Exception --> reads the next byte of data from the input stream. It returns -1 at the end of the file.
-2) avaibale() throws IO Exception --> returns an estimate of the number of bytes that can be read from the current input stream.
-3) close()    throws IOException  --> 	is used to close the current input stream.
+	Java application uses an input stream to read data from a source; it may be a file, an array, peripheral device or socket.
+	InputStream class is an abstract class. It is the superclass of all classes representing an input stream of bytes.
 
+	Methods:
+		1) read()     throws IO Exception --> reads the next byte of data from the input stream. It returns -1 at the end of the file.
+		2) avaibale() throws IO Exception --> returns an estimate of the number of bytes that can be read from the current input stream.
+		3) close()    throws IOException  --> is used to close the current input stream.
 
+BufferReader Class
+	> Used to read the data either from FileInputStream Reader or InputStream Reader
+	> 
